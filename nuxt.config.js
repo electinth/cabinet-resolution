@@ -32,7 +32,10 @@ export default {
   },
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [{ src: "~/plugins/element-ui" }],
+  plugins: [
+    { src: "~/plugins/element-ui" },
+    { src: "~/plugins/elect", mode: "client" }
+  ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -41,7 +44,18 @@ export default {
   buildModules: ["@nuxtjs/style-resources"],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: [],
+  modules: [["nuxt-mq"]],
+
+  mq: {
+    defaultBreakpoint: "desktop",
+    breakpoints: {
+      mobile: 768,
+      tablet: 1280,
+      desktop: 1400,
+      desktopWide: 2000,
+      desktopUltraWide: Infinity
+    }
+  },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {

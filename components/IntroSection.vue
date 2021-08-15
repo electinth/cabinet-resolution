@@ -46,9 +46,7 @@ export default {
   },
   methods: {
     goToSection(id) {
-      document.querySelector(id).scrollIntoView({
-        behavior: "smooth"
-      });
+      document.querySelector(id).scrollIntoView();
     }
   }
 };

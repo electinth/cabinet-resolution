@@ -2,6 +2,10 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background: $color-dark-green;
   font-family: "Kondolar Thai", "Serif";
@@ -79,6 +83,10 @@ h6 {
 
 .el-select-dropdown__item.selected {
   color: $color-green !important;
+}
+
+.el-dialog__close {
+  color: black;
 }
 
 button {

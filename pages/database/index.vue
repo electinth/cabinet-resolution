@@ -101,7 +101,7 @@
     <nuxt-link
       v-show="false"
       v-for="(item, index) in all_data.filter((d, index) => index < 1000)"
-      :key="index"
+      :key="`1${index}`"
       :to="`/database/${item.no}`"
     ></nuxt-link>
 
@@ -110,14 +110,14 @@
       v-for="(item, index) in all_data.filter(
         (d, index) => index >= 1000 && index < 2000
       )"
-      :key="index"
+      :key="`2${index}`"
       :to="`/database/${item.no}`"
     ></nuxt-link>
 
     <nuxt-link
       v-show="false"
       v-for="(item, index) in all_data.filter((d, index) => index >= 2000)"
-      :key="index"
+      :key="`3${index}`"
       :to="`/database/${item.no}`"
     ></nuxt-link>
   </div>
