@@ -26,15 +26,21 @@
           <div class="item">
             <div class="bd1 label">ตำแหน่ง/กระทรวง</div>
 
-            <div class="bd1 value tag tag-grey">{{ data.position || "-" }}</div>
+            <div v-if="data.position" class="bd1 value tag tag-grey">
+              {{ data.position }}
+            </div>
+
+            <div v-else class="bd1 value">-</div>
           </div>
 
           <div class="item">
             <div class="bd1 label">หมวดหมู่</div>
 
-            <div class="bd1 value tag tag-green">
-              {{ data.category || "-" }}
+            <div v-if="data.category" class="bd1 value tag tag-green">
+              {{ data.category }}
             </div>
+
+            <div v-else class="bd1 value">-</div>
           </div>
 
           <div class="item">
@@ -123,6 +129,10 @@ export default {
 .database-detail-page {
   background: $color-light-grey-2;
   padding: 70px 0;
+  @media (max-width: 767px) {
+    padding: 32px 0;
+    background: white;
+  }
   .breadcumb {
     display: flex;
     align-items: center;
@@ -139,11 +149,21 @@ export default {
     background: white;
     padding: 24px;
     margin-top: 16px;
+    @media (max-width: 767px) {
+      background: none;
+      border: none;
+      padding: 0;
+      flex-direction: column-reverse;
+    }
     .left {
       padding: 16px;
       width: 314px;
       background: $color-pale-green-2;
       flex: none;
+      @media (max-width: 767px) {
+        width: 100%;
+        margin-top: 40px;
+      }
       .item {
         margin-top: 32px;
         .label {
@@ -185,6 +205,10 @@ export default {
     }
     .right {
       padding: 0 24px;
+      @media (max-width: 767px) {
+        margin-top: 24px;
+        padding: 0;
+      }
       .item {
         margin-top: 24px;
         .label {
@@ -197,6 +221,15 @@ export default {
       .item:first-child {
         margin: 0;
       }
+    }
+  }
+  .table-wrap {
+    margin-top: 48px;
+    h4 {
+      margin: 0;
+    }
+    @media (max-width: 767px) {
+      margin-top: 40px;
     }
   }
 }
