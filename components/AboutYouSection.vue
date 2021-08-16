@@ -38,6 +38,9 @@ export default {};
   background: $color-pale-green-2;
   text-align: center;
   padding: 200px 0 400px 0;
+  @media (max-width: 767px) {
+    padding: 66px 0 120px 0;
+  }
   h3 {
     margin: 0;
     font-weight: normal;
@@ -45,6 +48,9 @@ export default {};
   h2 {
     margin: 380px 0 0 0;
     font-weight: normal;
+    @media (max-width: 767px) {
+      margin: 300px 0 0 0;
+    }
   }
   .btn-wrap {
     display: flex;
@@ -57,10 +63,17 @@ export default {};
       border: none;
       box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
       border-radius: 10px;
+      @media (max-width: 767px) {
+        font-size: 31px;
+        min-width: 136px;
+      }
     }
     .btn-yes {
       background: $color-green;
       margin-right: 32px;
+      @media (max-width: 767px) {
+        margin-right: 16px;
+      }
     }
     .btn-no {
       background: $color-pale-red;

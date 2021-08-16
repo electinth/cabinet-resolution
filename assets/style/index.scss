@@ -13,8 +13,11 @@ body {
 }
 
 .container {
-  width: 1200px;
+  max-width: 1200px;
   margin: 0 auto;
+  @media (max-width: 767px) {
+    padding: 0 16px;
+  }
 }
 
 .font-kondolar {
@@ -27,26 +30,44 @@ body {
 h1 {
   font-size: 61px;
   line-height: 120%;
+  @media (max-width: 767px) {
+    font-size: 49px;
+  }
 }
 h2 {
   font-size: 49px;
   line-height: 120%;
+  @media (max-width: 767px) {
+    font-size: 39px;
+  }
 }
 h3 {
   font-size: 39px;
   line-height: 120%;
+  @media (max-width: 767px) {
+    font-size: 31px;
+  }
 }
 h4 {
   font-size: 31px;
   line-height: 120%;
+  @media (max-width: 767px) {
+    font-size: 25px;
+  }
 }
 h5 {
   font-size: 25px;
   line-height: 120%;
+  @media (max-width: 767px) {
+    font-size: 20px;
+  }
 }
 h6 {
   font-size: 20px;
   line-height: 120%;
+  @media (max-width: 767px) {
+    font-size: 16px;
+  }
 }
 .bd1 {
   font-size: 16px;

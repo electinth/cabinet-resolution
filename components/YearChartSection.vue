@@ -34,7 +34,11 @@
 
         <div class="bd1 label">เดือนที่ออกมติ</div>
 
-        <el-select v-model="select_month" placeholder="เดือนที่ออกมติ">
+        <el-select
+          v-if="$mq !== 'mobile'"
+          v-model="select_month"
+          placeholder="เดือนที่ออกมติ"
+        >
           <el-option
             v-for="option in select_month_options"
             :key="option.value"
@@ -85,7 +89,7 @@
               open_in_new
             </span>
 
-            <h5>ดูฐานข้อมูล มติ ครม. โดยละเอียด</h5>
+            <h5>ดูฐานข้อมูล มติ ครม.</h5>
           </button>
         </nuxt-link>
       </div>
@@ -431,6 +435,9 @@ export default {
   color: white;
   text-align: center;
   padding: 90px 0 140px 0;
+  @media (max-width: 767px) {
+    padding: 46px 0 24px 0;
+  }
   .head {
     h2 {
       font-weight: normal;
@@ -449,12 +456,23 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
+    @media (max-width: 767px) {
+      flex-direction: column;
+      margin-top: 30px;
+    }
     .label {
       margin-right: 16px;
       flex: none;
+      @media (max-width: 767px) {
+        display: none;
+      }
     }
     .el-select {
       margin-right: 16px;
+      @media (max-width: 767px) {
+        margin: 16px 0 0 0;
+        width: 100%;
+      }
     }
     ::v-deep {
       input {
@@ -466,6 +484,9 @@ export default {
   .year-chart-wrap {
     margin-top: 50px;
     position: relative;
+    @media (max-width: 767px) {
+      margin-top: 30px;
+    }
   }
   .year-chart-wrap.overflow {
     .bg-overflow {
@@ -487,16 +508,27 @@ export default {
     align-items: center;
     justify-content: center;
     margin-top: 30px;
+    @media (max-width: 767px) {
+      flex-direction: column;
+    }
     a {
       text-decoration: none;
+      @media (max-width: 767px) {
+        width: 100%;
+        margin-top: 16px;
+      }
     }
     button {
       border: 1px solid white;
       display: flex;
       background: none;
       align-items: center;
+      justify-content: center;
       padding: 8px 12px;
       color: white;
+      @media (max-width: 767px) {
+        width: 100%;
+      }
       .material-icons {
         margin-right: 15px;
       }
@@ -507,17 +539,31 @@ export default {
     }
     button:first-child {
       margin-right: 16px;
+      @media (max-width: 767px) {
+        margin: 0;
+      }
     }
   }
   .legend {
     display: flex;
     justify-content: center;
     margin-top: 30px;
+    flex-wrap: wrap;
+    @media (max-width: 767px) {
+      margin-top: 14px;
+      justify-content: flex-start;
+    }
     .item {
       display: flex;
       align-items: center;
       margin-right: 24px;
       line-height: normal;
+      @media (max-width: 767px) {
+        width: 50%;
+        margin: 16px 0 0 0;
+        text-align: left;
+        align-items: flex-start;
+      }
       .bar {
         width: 4px;
         height: 16px;

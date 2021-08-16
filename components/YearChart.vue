@@ -59,7 +59,11 @@
     </div>
 
     <div class="line-wrap">
-      <div v-for="(line, index) in 11" :key="index" class="line"></div>
+      <div
+        v-for="(line, index) in $mq === 'mobile' ? 5 : 11"
+        :key="index"
+        class="line"
+      ></div>
     </div>
   </div>
 </template>
@@ -99,6 +103,10 @@ export default {
       width: 80px;
       text-align: right;
       flex: none;
+      @media (max-width: 767px) {
+        margin: 0 24px 0 0;
+        width: 60px;
+      }
     }
     .line {
       height: 1px;
@@ -115,6 +123,10 @@ export default {
       margin-right: 30px;
       text-align: right;
       flex: none;
+      @media (max-width: 767px) {
+        margin-right: 24px;
+        width: 60px;
+      }
     }
     .item-wrap {
       display: flex;
@@ -188,6 +200,9 @@ export default {
     left: 110px;
     height: 100%;
     pointer-events: none;
+    @media (max-width: 767px) {
+      left: 84px;
+    }
     .line {
       border-left: 1px solid $color-grey;
       height: 100%;

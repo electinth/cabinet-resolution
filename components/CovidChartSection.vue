@@ -24,6 +24,7 @@
             {{ bar.name }}
 
             <el-tooltip
+              v-if="bar.info"
               class="item"
               effect="dark"
               :content="bar.info"
@@ -109,10 +110,10 @@ export default {
       ];
 
       return _.map(types, t => {
-        return {
-          ...t,
-          data: _.filter(this.data, d => d.category === t.name)
-        };
+        const data = _.filter(this.data, d => d.category === t.name);
+        if (this.$mq === "mobile") return { name: t.name, data };
+
+        return { ...t, data };
       });
     }
   }
@@ -124,6 +125,9 @@ export default {
   background: $color-pale-green-2;
   padding: 250px 0 110px 0;
   color: $color-dark-green;
+  @media (max-width: 767px) {
+    padding: 66px 0;
+  }
   h2 {
     font-weight: normal;
     margin: 0;
@@ -137,6 +141,10 @@ export default {
       align-items: center;
       padding: 24px;
       border-bottom: 1px solid $color-grey;
+      @media (max-width: 767px) {
+        display: block;
+        padding: 0 0 16px 0;
+      }
       h5 {
         font-weight: normal;
         margin: 0;
@@ -151,7 +159,7 @@ export default {
     }
     .bar-wrap {
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       margin-top: 24px;
       .name {
         width: 205px;
@@ -161,6 +169,11 @@ export default {
         display: flex;
         align-items: center;
         justify-content: flex-end;
+        flex: none;
+        @media (max-width: 767px) {
+          width: 90px;
+          margin: 0 16px 0 0;
+        }
         .el-tooltip {
           margin-left: 10px;
           cursor: pointer;
@@ -175,7 +188,7 @@ export default {
           border: 1px solid #ffffff;
           width: 4px;
           height: 16px;
-          margin-right: 2px;
+          margin: 0 2px 8px 0;
           box-sizing: content-box;
         }
       }
@@ -184,6 +197,9 @@ export default {
   .end-text {
     text-align: center;
     margin-top: 350px;
+    @media (max-width: 767px) {
+      margin-top: 96px;
+    }
     h3 {
       font-weight: normal;
     }

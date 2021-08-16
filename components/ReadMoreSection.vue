@@ -92,6 +92,9 @@ export default {
   background: $color-dark-green;
   padding: 100px 0 130px 0;
   color: white;
+  @media (max-width: 767px) {
+    padding: 50px 0 116px 0;
+  }
   h2 {
     font-weight: normal;
     margin: 0;
@@ -101,6 +104,9 @@ export default {
     width: 608px;
     margin: 46px auto 0 auto;
     border: none;
+    @media (max-width: 767px) {
+      width: 100%;
+    }
     .el-collapse-item {
       margin-top: 10px;
       ::v-deep {
@@ -110,6 +116,10 @@ export default {
           font-size: 25px;
           padding: 24px;
           height: auto;
+          @media (max-width: 767px) {
+            font-size: 16px;
+            line-height: 130%;
+          }
         }
         .el-collapse-item__content {
           background: $color-pale-red;
@@ -126,16 +136,30 @@ export default {
     font-weight: normal;
     margin: 180px 0 0 0;
     text-align: center;
+    @media (max-width: 767px) {
+      margin: 88px 0 0 0;
+    }
   }
   .row {
     margin-top: 48px;
     display: flex;
     justify-content: center;
+    @media (max-width: 767px) {
+      display: block;
+    }
     .card {
       display: block;
       text-decoration: none;
       width: 282px;
       color: white;
+      @media (max-width: 767px) {
+        margin-top: 42px;
+        width: 100%;
+      }
+      img {
+        width: 100%;
+        object-fit: cover;
+      }
       .bd1 {
         margin-top: 20px;
       }

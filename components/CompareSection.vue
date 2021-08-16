@@ -1,6 +1,5 @@
 <template>
   <div class="compare-section">
-    {{ other_data.length }}
     <div class="container">
       <h2>
         ไม่ใช่แค่ ครม. เท่านั้นที่ชง-ตบมติกันเองได้<br />
@@ -8,22 +7,30 @@
       </h2>
 
       <div class="bar-wrap">
-        <div class="left" :style="{ width: `${minister_data_percent}%` }">
-          <h4>มติจาก ครม.</h4>
+        <div class="text">
+          <div class="left">
+            <h4>มติจาก ครม.</h4>
+          </div>
 
-          <div class="bar">
-            <div class="bd1">
-              {{ minister_data_total }} ({{ minister_data_percent }}%)
-            </div>
+          <div class="right">
+            <h4>มติจากหน่วยงานอื่น</h4>
           </div>
         </div>
 
-        <div class="right" :style="{ width: `${other_data_percent}%` }">
-          <h4>มติจากหน่วยงานอื่น</h4>
+        <div class="value">
+          <div class="left" :style="{ width: `${minister_data_percent}%` }">
+            <div class="bar">
+              <div class="bd1">
+                {{ minister_data_total }} ({{ minister_data_percent }}%)
+              </div>
+            </div>
+          </div>
 
-          <div class="bar">
-            <div class="bd1">
-              {{ other_data_total }} ({{ other_data_percent }}%)
+          <div class="right" :style="{ width: `${other_data_percent}%` }">
+            <div class="bar">
+              <div class="bd1">
+                {{ other_data_total }} ({{ other_data_percent }}%)
+              </div>
             </div>
           </div>
         </div>
@@ -88,18 +95,31 @@ export default {
   color: white;
   text-align: center;
   padding: 270px 0 100px 0;
+  @media (max-width: 767px) {
+    padding: 115px 0 90px 0;
+  }
   h2 {
     font-weight: normal;
     margin: 0;
   }
   .bar-wrap {
     margin-top: 110px;
-    display: flex;
-    > div {
+    @media (max-width: 767px) {
+      margin-top: 68px;
+    }
+    .text {
+      display: flex;
+      justify-content: space-between;
       h4 {
         font-weight: normal;
         margin: 0;
+        @media (max-width: 767px) {
+          font-size: 16px;
+        }
       }
+    }
+    .value {
+      display: flex;
       .bar {
         height: 48px;
         padding: 8px;
@@ -128,6 +148,9 @@ export default {
     align-items: center;
     justify-content: center;
     margin-top: 56px;
+    @media (max-width: 767px) {
+      margin-top: 30px;
+    }
     h4 {
       font-weight: normal;
       margin: 0 32px 0 0;
@@ -140,6 +163,9 @@ export default {
   .end-text {
     font-weight: normal;
     margin: 192px 0 0 0;
+    @media (max-width: 767px) {
+      margin: 95px 0 0 0;
+    }
   }
 }
 </style>

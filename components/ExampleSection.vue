@@ -3,13 +3,15 @@
     <div class="container">
       <h2>ตัวอย่างมติที่น่าสนใจ</h2>
 
-      <el-radio-group v-model="tab">
-        <el-radio-button
-          v-for="(tab, index) in tabs"
-          :key="index"
-          :label="tab.name"
-        ></el-radio-button>
-      </el-radio-group>
+      <div class="radio-wrap">
+        <el-radio-group v-model="tab">
+          <el-radio-button
+            v-for="(tab, index) in tabs"
+            :key="index"
+            :label="tab.name"
+          ></el-radio-button>
+        </el-radio-group>
+      </div>
 
       <div v-if="card" class="card">
         <div class="head">
@@ -115,10 +117,21 @@ export default {
 .example-section {
   color: white;
   padding: 120px 0;
+  @media (max-width: 767px) {
+    padding: 46px 0 42px 0;
+  }
   h2 {
     font-weight: normal;
+    margin: 0 0 16px 0;
+  }
+  .radio-wrap {
+    @media (max-width: 767px) {
+      overflow-x: auto;
+      margin-right: -16px;
+    }
   }
   .el-radio-group {
+    display: flex;
     ::v-deep {
       .el-radio-button {
         .el-radio-button__inner {
@@ -129,6 +142,9 @@ export default {
           border-radius: 0;
           font-size: 25px;
           line-height: 120%;
+          @media (max-width: 767px) {
+            font-size: 16px;
+          }
         }
       }
       .el-radio-button.is-active {
@@ -147,6 +163,10 @@ export default {
     width: 670px;
     text-align: left;
     margin: 74px auto 0 auto;
+    @media (max-width: 767px) {
+      width: 100%;
+      margin-top: 30px;
+    }
     .head {
       display: flex;
       justify-content: space-between;

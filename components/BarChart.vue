@@ -30,7 +30,7 @@
     <div
       class="domain-wrap"
       :style="{
-        left: `${label_width + 24}px`
+        left: `${label_width + ($mq === 'mobile' ? 8 : 24)}px`
       }"
     >
       <div v-for="(range, index) in domain_ranges" :key="index" class="domain">
@@ -87,10 +87,16 @@ export default {
     margin-top: 16px;
     position: relative;
     z-index: 1;
+    @media (max-width: 767px) {
+      margin-top: 10px;
+    }
     h6 {
       text-align: right;
       font-weight: normal;
       margin: 0 24px 0 0;
+      @media (max-width: 767px) {
+        margin: 0 8px 0 0;
+      }
     }
     .bar {
       margin-right: 8px;
@@ -104,6 +110,9 @@ export default {
     right: 20%;
     height: 100%;
     pointer-events: none;
+    @media (max-width: 767px) {
+      right: 8%;
+    }
     .domain {
       width: 30px;
       display: flex;

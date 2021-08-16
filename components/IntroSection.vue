@@ -57,12 +57,19 @@ export default {
   min-height: 100vh;
   display: flex;
   text-align: center;
+  @media (max-width: 767px) {
+    flex-direction: column;
+  }
   .left {
     width: 55%;
     padding: 60px;
     display: flex;
     align-items: center;
     justify-content: center;
+    @media (max-width: 767px) {
+      width: 100%;
+      padding: 60px 16px 40px 16px;
+    }
     h1 {
       color: white;
     }
@@ -72,6 +79,10 @@ export default {
     display: flex;
     flex-direction: column;
     padding-right: 16px;
+    @media (max-width: 767px) {
+      width: 100%;
+      padding: 0 16px 28px 16px;
+    }
     .menu {
       flex: 1;
       border-radius: 10px;
@@ -84,8 +95,8 @@ export default {
         font-weight: normal;
       }
     }
-    .menu:last-child {
-      margin-bottom: 16px;
+    .menu:first-child {
+      margin-top: 16px;
     }
   }
 }

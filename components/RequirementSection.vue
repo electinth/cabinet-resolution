@@ -82,6 +82,9 @@ export default {};
 <style lang="scss" scoped>
 .requirement-section {
   padding: 140px 0 200px 0;
+  @media (max-width: 767px) {
+    padding: 115px 0 86px 0;
+  }
   h2 {
     font-weight: normal;
     margin: 0;
@@ -111,11 +114,17 @@ export default {};
     }
     .row {
       display: flex;
+      @media (max-width: 767px) {
+        flex-direction: column;
+      }
       .card {
         flex: 1;
       }
       .card:first-child {
         margin-right: 24px;
+        @media (max-width: 767px) {
+          margin: 0;
+        }
       }
     }
   }

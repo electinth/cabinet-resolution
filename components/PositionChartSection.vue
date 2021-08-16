@@ -6,9 +6,9 @@
       <BarChart
         :data="position_data"
         :domain_ranges="['0', '250', '500']"
-        :bar_scale="4"
+        :bar_scale="$mq === 'mobile' ? 3.2 : 4"
         :bar_height="16"
-        :label_width="230"
+        :label_width="$mq === 'mobile' ? 100 : 230"
       />
     </div>
   </div>
@@ -141,6 +141,9 @@ export default {
 .position-chart-section {
   color: white;
   padding: 70px 0;
+  @media (max-width: 767px) {
+    padding: 46px 0 54px 0;
+  }
   h2 {
     font-weight: normal;
     margin: 0;

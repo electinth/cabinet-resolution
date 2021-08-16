@@ -9,7 +9,7 @@
           :domain_ranges="['0', '500', '1,000']"
           :bar_scale="1.8"
           :bar_height="32"
-          :label_width="130"
+          :label_width="$mq === 'mobile' ? 60 : 130"
           show_percent_text
         />
 
@@ -120,6 +120,9 @@ export default {
 .type-chart-section {
   color: white;
   padding: 120px 0;
+  @media (max-width: 767px) {
+    padding: 46px 0 66px 0;
+  }
   h2 {
     font-weight: normal;
     margin: 0;
@@ -128,13 +131,25 @@ export default {
     display: flex;
     margin-top: 48px;
     align-items: flex-start;
+    @media (max-width: 767px) {
+      margin-top: 30px;
+      flex-direction: column;
+      align-items: unset;
+    }
     .bar-chart {
       flex: 1;
       margin-right: 90px;
+      @media (max-width: 767px) {
+        margin: 0;
+      }
     }
     .meaning {
       flex: none;
       width: 290px;
+      @media (max-width: 767px) {
+        margin-top: 50px;
+        width: 100%;
+      }
       .title {
         font-weight: normal;
         margin: 0;

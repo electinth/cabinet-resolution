@@ -71,9 +71,16 @@ export default {
   padding: 240px 0 190px 0;
   text-align: center;
   color: white;
+  @media (max-width: 767px) {
+    padding: 140px 0 40px 0;
+  }
   .intro {
     width: 844px;
     margin: 0 auto;
+    @media (max-width: 767px) {
+      width: 100%;
+      padding: 0 16px;
+    }
     h5 {
       font-weight: normal;
       margin: 0 0 24px 0;
@@ -85,25 +92,47 @@ export default {
   .vocab {
     width: 844px;
     margin: 260px auto 0 auto;
+    @media (max-width: 767px) {
+      width: 100%;
+      padding: 0 16px;
+      margin-top: 170px;
+    }
     h5 {
       font-weight: normal;
+      @media (max-width: 767px) {
+        text-align: left;
+      }
     }
     ul {
       list-style-type: none;
       margin-top: 60px;
+      padding: 0;
+      @media (max-width: 767px) {
+        margin-top: 24px;
+      }
       li {
         display: flex;
         align-items: center;
         margin-bottom: 24px;
+        @media (max-width: 767px) {
+          flex-direction: column;
+          align-items: flex-start;
+        }
         h3 {
           width: 260px;
           text-align: right;
           margin: 0 30px 0 0;
           font-weight: normal;
           flex: none;
+          @media (max-width: 767px) {
+            text-align: left;
+          }
         }
         .bd1 {
           text-align: left;
+          @media (max-width: 767px) {
+            margin-top: 4px;
+          }
         }
       }
     }
