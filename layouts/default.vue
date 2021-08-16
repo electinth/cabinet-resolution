@@ -1,6 +1,6 @@
 <template>
   <div class="layout">
-    <elect-navbar title-text=" ">
+    <!-- <elect-navbar title-text=" ">
       <div v-if="$mq === 'mobile'">
         <button class="btn-hamburger" @click="drawer = true">
           <span class="material-icons">menu</span>
@@ -29,11 +29,11 @@
           {{ menu.name }}
         </nuxt-link>
       </div>
-    </elect-navbar>
+    </elect-navbar> -->
 
     <Nuxt />
 
-    <elect-footer />
+    <!-- <elect-footer /> -->
   </div>
 </template>
 
