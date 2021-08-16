@@ -1,6 +1,45 @@
 <template>
   <div class="table-list">
-    <el-table :data="data" style="width: 100%" @cell-click="cellClick">
+    <div v-if="$mq === 'mobile'" class="mobile-table">
+      <nuxt-link
+        :to="`/database/${d.no}`"
+        v-for="(d, index) in data"
+        :key="index"
+        class="item"
+      >
+        <div class="row">
+          <div class="bd2 label">วันที่</div>
+
+          <div class="bd2 value">{{ d.date }}</div>
+        </div>
+
+        <div class="row">
+          <div class="bd2 label">ชื่อมติ</div>
+
+          <div class="bd2 value">{{ d.main_topic }}</div>
+        </div>
+
+        <div class="row">
+          <div class="bd2 label">หมวดหมู่</div>
+
+          <div class="bd2 value">{{ d.category }}</div>
+        </div>
+
+        <div class="row">
+          <div class="bd2 label">ออกมติโดย</div>
+
+          <div class="bd2 value">{{ d.minister_name }}</div>
+        </div>
+
+        <div class="row">
+          <div class="bd2 label">ตำแหน่ง/กระทรวง</div>
+
+          <div class="bd2 value">{{ d.position }}</div>
+        </div>
+      </nuxt-link>
+    </div>
+
+    <el-table v-else :data="data" style="width: 100%" @cell-click="cellClick">
       <el-table-column prop="date" label="วันที่" width="140">
       </el-table-column>
 
@@ -104,6 +143,24 @@ export default {
     tr:hover {
       td {
         background: $color-pale-green-2;
+      }
+    }
+  }
+}
+.mobile-table {
+  .item {
+    padding: 24px 0;
+    border-bottom: 1px solid $color-grey-4;
+    text-decoration: none;
+    color: black;
+    display: block;
+    .row {
+      display: flex;
+      margin-top: 16px;
+      .label {
+        width: 60px;
+        margin-right: 24px;
+        flex: none;
       }
     }
   }

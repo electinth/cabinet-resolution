@@ -416,10 +416,16 @@ export default {
   .header {
     background: $color-pale-green-2;
     padding: 64px 0;
+    @media (max-width: 767px) {
+      padding: 32px 0;
+    }
     .title {
       color: $color-green;
       display: flex;
       justify-content: space-between;
+      @media (max-width: 767px) {
+        display: block;
+      }
       h1 {
         margin: 0;
       }
@@ -435,6 +441,9 @@ export default {
       .label {
         margin-right: 16px;
         flex: none;
+        @media (max-width: 767px) {
+          display: none;
+        }
       }
     }
     .filter-wrap {
@@ -442,12 +451,23 @@ export default {
       display: flex;
       justify-content: center;
       align-items: center;
+      @media (max-width: 767px) {
+        display: block;
+        margin-top: 0;
+      }
       .label {
         margin-right: 16px;
         flex: none;
+        @media (max-width: 767px) {
+          display: none;
+        }
       }
       .el-select {
         margin-right: 16px;
+        @media (max-width: 767px) {
+          width: 100%;
+          margin-top: 16px;
+        }
       }
       ::v-deep {
         input {
@@ -463,6 +483,9 @@ export default {
   .table-wrap {
     background: $color-light-grey-2;
     padding: 72px 0 80px 0;
+    @media (max-width: 767px) {
+      padding: 8px 0 32px 0;
+    }
     .pagination {
       display: flex;
       justify-content: flex-end;
@@ -470,8 +493,15 @@ export default {
       margin-top: 40px;
       font-size: 16px;
       font-family: "Anuphan", "Serif";
+      @media (max-width: 767px) {
+        display: block;
+        text-align: center;
+      }
       .el-pagination {
         margin-left: 60px;
+        @media (max-width: 767px) {
+          margin: 16px 0 0 0;
+        }
         ::v-deep {
           button {
             background: none;
@@ -479,6 +509,9 @@ export default {
           li {
             background: none;
             font-size: 16px;
+            @media (max-width: 375px) {
+              min-width: 24px;
+            }
           }
           li.active {
             color: $color-green;
