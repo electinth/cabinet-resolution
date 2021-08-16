@@ -225,11 +225,17 @@ export default {
   }
   .table-wrap {
     margin-top: 48px;
+    @media (max-width: 767px) {
+      margin-top: 40px;
+    }
     h4 {
       margin: 0;
     }
-    @media (max-width: 767px) {
-      margin-top: 40px;
+    .table-list {
+      margin-top: 32px;
+      @media (max-width: 767px) {
+        margin-top: 0;
+      }
     }
   }
 }
