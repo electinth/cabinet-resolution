@@ -25,20 +25,45 @@
 
         <button class="btn-no">ไม่มี</button>
       </div>
+
+      <div class="btn-wrap">
+        <button class="btn-go-to-top" @click="goToTop">
+          <span class="material-icons">
+            refresh
+          </span>
+
+          ดูฐานข้อมูล มติ ครม. อีกครั้ง
+        </button>
+      </div>
+
+      <div class="sharer">
+        <elect-sharer :url="url" />
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      url: process.env.web_url
+    };
+  },
+  methods: {
+    goToTop() {
+      window.scrollTo(0, 0);
+    }
+  }
+};
 </script>
 
 <style lang="scss" scoped>
 .about-you-section {
   background: $color-pale-green-2;
   text-align: center;
-  padding: 200px 0 400px 0;
-  @media (max-width: 767px) {
+  padding: 200px 0;
+  @include media-breakpoint(tablet) {
     padding: 66px 0 120px 0;
   }
   h3 {
@@ -48,7 +73,7 @@ export default {};
   h2 {
     margin: 380px 0 0 0;
     font-weight: normal;
-    @media (max-width: 767px) {
+    @include media-breakpoint(tablet) {
       margin: 300px 0 0 0;
     }
   }
@@ -63,7 +88,7 @@ export default {};
       border: none;
       box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
       border-radius: 10px;
-      @media (max-width: 767px) {
+      @include media-breakpoint(tablet) {
         font-size: 31px;
         min-width: 136px;
       }
@@ -71,13 +96,34 @@ export default {};
     .btn-yes {
       background: $color-green;
       margin-right: 32px;
-      @media (max-width: 767px) {
+      @include media-breakpoint(tablet) {
         margin-right: 16px;
       }
     }
     .btn-no {
       background: $color-pale-red;
     }
+    .btn-go-to-top {
+      padding: 16px 28px;
+      background: $color-green;
+      font-size: 25px;
+      margin-top: 300px;
+      display: flex;
+      align-items: center;
+      text-align: left;
+      @include media-breakpoint(tablet) {
+        font-size: 20px;
+      }
+      .material-icons {
+        margin-right: 16px;
+        font-size: 30px;
+      }
+    }
+  }
+  .sharer {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
   }
 }
 </style>

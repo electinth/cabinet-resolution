@@ -77,64 +77,41 @@
 
     <div class="table-wrap">
       <div class="container">
-        <TableList :data="display_data" />
+        <template v-if="display_data.length > 0">
+          <TableList :data="display_data" />
 
-        <div class="pagination">
-          {{ numFormat((current_page - 1) * 20 + 1) }}-{{
-            current_page * 20 > filter_data.length
-              ? numFormat(filter_data.length)
-              : numFormat(current_page * 20)
-          }}
-          จากผลลัพธ์ทั้งหมด {{ numFormat(filter_data.length) }} รายการ
+          <div class="pagination">
+            {{ numFormat((current_page - 1) * 20 + 1) }}-{{
+              current_page * 20 > filter_data.length
+                ? numFormat(filter_data.length)
+                : numFormat(current_page * 20)
+            }}
+            จากผลลัพธ์ทั้งหมด {{ numFormat(filter_data.length) }} รายการ
 
-          <el-pagination
-            layout="prev, pager, next"
-            :current-page.sync="current_page"
-            :page-size="20"
-            :total="filter_data.length"
-          >
-          </el-pagination>
+            <el-pagination
+              layout="prev, pager, next"
+              :current-page.sync="current_page"
+              :page-size="20"
+              :total="filter_data.length"
+            >
+            </el-pagination>
+          </div>
+        </template>
+
+        <div v-else class="no-data-text bd1">
+          ไม่พบผลลัพธ์ที่คุณค้นหา
         </div>
       </div>
     </div>
-
-    <nuxt-link
-      v-show="false"
-      v-for="(item, index) in all_data.filter((d, index) => index < 1000)"
-      :key="`1${index}`"
-      :to="`/database/${item.no}`"
-    ></nuxt-link>
-
-    <nuxt-link
-      v-show="false"
-      v-for="(item, index) in all_data.filter(
-        (d, index) => index >= 1000 && index < 2000
-      )"
-      :key="`2${index}`"
-      :to="`/database/${item.no}`"
-    ></nuxt-link>
-
-    <nuxt-link
-      v-show="false"
-      v-for="(item, index) in all_data.filter((d, index) => index >= 2000)"
-      :key="`3${index}`"
-      :to="`/database/${item.no}`"
-    ></nuxt-link>
   </div>
 </template>
 
 <script>
-import two_years_data from "~/static/data/2years.json";
-import covid_data from "~/static/data/covid.json";
 import numeral from "numeral";
 import _ from "lodash";
-
-const all_data = [...two_years_data, ...covid_data];
+import { mapState } from "vuex";
 
 export default {
-  asyncData() {
-    return { all_data };
-  },
   data() {
     return {
       input_search: "",
@@ -356,11 +333,15 @@ export default {
     };
   },
   computed: {
+    ...mapState(["two_years_data", "covid_data"]),
+    all_data() {
+      return [...this.two_years_data, ...this.covid_data];
+    },
     total_data() {
-      return numeral(all_data.length).format("0,0");
+      return numeral(this.all_data.length).format("0,0");
     },
     filter_data() {
-      let data = [...all_data];
+      let data = [...this.all_data];
 
       if (this.input_search) {
         data = _.filter(
@@ -416,14 +397,14 @@ export default {
   .header {
     background: $color-pale-green-2;
     padding: 64px 0;
-    @media (max-width: 767px) {
+    @include media-breakpoint(tablet) {
       padding: 32px 0;
     }
     .title {
       color: $color-green;
       display: flex;
       justify-content: space-between;
-      @media (max-width: 767px) {
+      @include media-breakpoint(tablet) {
         display: block;
       }
       h1 {
@@ -441,7 +422,7 @@ export default {
       .label {
         margin-right: 16px;
         flex: none;
-        @media (max-width: 767px) {
+        @include media-breakpoint(tablet) {
           display: none;
         }
       }
@@ -451,20 +432,20 @@ export default {
       display: flex;
       justify-content: center;
       align-items: center;
-      @media (max-width: 767px) {
+      @include media-breakpoint(tablet) {
         display: block;
         margin-top: 0;
       }
       .label {
         margin-right: 16px;
         flex: none;
-        @media (max-width: 767px) {
+        @include media-breakpoint(tablet) {
           display: none;
         }
       }
       .el-select {
         margin-right: 16px;
-        @media (max-width: 767px) {
+        @include media-breakpoint(tablet) {
           width: 100%;
           margin-top: 16px;
         }
@@ -483,7 +464,7 @@ export default {
   .table-wrap {
     background: $color-light-grey-2;
     padding: 72px 0 80px 0;
-    @media (max-width: 767px) {
+    @include media-breakpoint(tablet) {
       padding: 8px 0 32px 0;
     }
     .pagination {
@@ -493,13 +474,13 @@ export default {
       margin-top: 40px;
       font-size: 16px;
       font-family: "Anuphan", "Serif";
-      @media (max-width: 767px) {
+      @include media-breakpoint(tablet) {
         display: block;
         text-align: center;
       }
       .el-pagination {
         margin-left: 60px;
-        @media (max-width: 767px) {
+        @include media-breakpoint(tablet) {
           margin: 16px 0 0 0;
         }
         ::v-deep {
@@ -518,6 +499,11 @@ export default {
           }
         }
       }
+    }
+    .no-data-text {
+      height: 300px;
+      text-align: center;
+      padding-top: 100px;
     }
   }
 }

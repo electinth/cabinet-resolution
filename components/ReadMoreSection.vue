@@ -26,7 +26,7 @@
           <img :src="covid_act_image" :alt="covid_act_image" />
 
           <div class="bd1">
-            จับโกงงบ COVID ด้วย ACT Ai ร่วมติดตามและตรวจสอบการใช้งบประมาณ
+            จับโกงงบ โควิด-19 ด้วย ACT Ai ร่วมติดตามและตรวจสอบการใช้งบประมาณ
             400,000 ล้านบาท
           </div>
         </a>
@@ -92,7 +92,7 @@ export default {
   background: $color-dark-green;
   padding: 100px 0 130px 0;
   color: white;
-  @media (max-width: 767px) {
+  @include media-breakpoint(tablet) {
     padding: 50px 0 116px 0;
   }
   h2 {
@@ -104,7 +104,7 @@ export default {
     width: 608px;
     margin: 46px auto 0 auto;
     border: none;
-    @media (max-width: 767px) {
+    @include media-breakpoint(tablet) {
       width: 100%;
     }
     .el-collapse-item {
@@ -116,7 +116,7 @@ export default {
           font-size: 25px;
           padding: 24px;
           height: auto;
-          @media (max-width: 767px) {
+          @include media-breakpoint(tablet) {
             font-size: 16px;
             line-height: 130%;
           }
@@ -136,7 +136,7 @@ export default {
     font-weight: normal;
     margin: 180px 0 0 0;
     text-align: center;
-    @media (max-width: 767px) {
+    @include media-breakpoint(tablet) {
       margin: 88px 0 0 0;
     }
   }
@@ -144,7 +144,7 @@ export default {
     margin-top: 48px;
     display: flex;
     justify-content: center;
-    @media (max-width: 767px) {
+    @include media-breakpoint(tablet) {
       display: block;
     }
     .card {
@@ -152,7 +152,7 @@ export default {
       text-decoration: none;
       width: 282px;
       color: white;
-      @media (max-width: 767px) {
+      @include media-breakpoint(tablet) {
         margin-top: 42px;
         width: 100%;
       }

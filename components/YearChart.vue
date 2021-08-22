@@ -16,18 +16,28 @@
       </div>
 
       <div class="item-wrap">
-        <div
+        <el-popover
           v-for="(data, data_index) in month.data"
           :key="data_index"
-          :style="{
-            background: data.color,
-            border: data.color ? 'none' : '1px solid white'
-          }"
-          class="item"
-          @mouseover="data.show_tooltip = true"
-          @mouseleave="data.show_tooltip = false"
+          :visible-arrow="false"
+          :open-delay="0"
+          :close-delay="200"
+          transition=""
+          width="328"
+          trigger="hover"
+          popper-class="chart-tooltip"
+          @after-leave="afterLeaveTooltip"
         >
-          <div v-if="data.show_tooltip" class="tooltip">
+          <div
+            :style="{
+              background: data.color,
+              border: data.color ? 'none' : '1px solid white'
+            }"
+            class="item"
+            slot="reference"
+          ></div>
+
+          <div>
             <div class="head">
               <div class="bd2 date">วันเสนอ {{ data.date }}</div>
 
@@ -42,7 +52,11 @@
               {{ data.main_topic }}
             </div>
 
-            <nuxt-link :to="`/database/${data.no}`">
+            <a
+              :href="`/database/${data.no}`"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <button class="btn-read-more">
                 <span class="material-icons">
                   expand_more
@@ -52,15 +66,15 @@
                   อ่านเพิ่ม
                 </div>
               </button>
-            </nuxt-link>
+            </a>
           </div>
-        </div>
+        </el-popover>
       </div>
     </div>
 
     <div class="line-wrap">
       <div
-        v-for="(line, index) in $mq === 'mobile' ? 5 : 11"
+        v-for="(line, index) in ['mobile', 'tablet'].includes($mq) ? 5 : 11"
         :key="index"
         class="line"
       ></div>
@@ -87,6 +101,16 @@ export default {
         return [];
       }
     }
+  },
+  methods: {
+    afterLeaveTooltip() {
+      setTimeout(() => {
+        const tooltips = document.getElementsByClassName("el-popover");
+        tooltips.forEach(e => {
+          e.remove();
+        });
+      }, 200);
+    }
   }
 };
 </script>
@@ -94,6 +118,7 @@ export default {
 <style lang="scss" scoped>
 .year-chart {
   color: white;
+  position: relative;
   .year {
     margin-bottom: 16px;
     display: flex;
@@ -103,7 +128,7 @@ export default {
       width: 80px;
       text-align: right;
       flex: none;
-      @media (max-width: 767px) {
+      @include media-breakpoint(tablet) {
         margin: 0 24px 0 0;
         width: 60px;
       }
@@ -123,7 +148,7 @@ export default {
       margin-right: 30px;
       text-align: right;
       flex: none;
-      @media (max-width: 767px) {
+      @include media-breakpoint(tablet) {
         margin-right: 24px;
         width: 60px;
       }
@@ -137,53 +162,6 @@ export default {
         margin-right: 4px;
         margin-bottom: 16px;
         cursor: pointer;
-        position: relative;
-        .tooltip {
-          position: absolute;
-          z-index: 1;
-          left: 50%;
-          top: 10px;
-          transform: translateX(-50%);
-          background: #ffffff;
-          border-radius: 8px;
-          padding: 16px;
-          color: $color-black;
-          width: 328px;
-          text-align: left;
-          .head {
-            display: flex;
-            justify-content: space-between;
-            .el-tag {
-              background: none;
-              color: $color-black;
-              border-color: $color-green;
-            }
-          }
-          .label {
-            margin-top: 8px;
-            color: $color-green;
-          }
-          .name {
-            color: $color-black;
-          }
-          a {
-            text-decoration: none;
-          }
-          .btn-read-more {
-            background: none;
-            border: 1px solid $color-light-grey;
-            border-radius: 5px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 44px;
-            margin-top: 16px;
-            width: 100%;
-            .material-icons {
-              margin-right: 10px;
-            }
-          }
-        }
       }
       .item:hover {
         background: white !important;
@@ -200,7 +178,7 @@ export default {
     left: 110px;
     height: 100%;
     pointer-events: none;
-    @media (max-width: 767px) {
+    @include media-breakpoint(tablet) {
       left: 84px;
     }
     .line {

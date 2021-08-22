@@ -15,7 +15,10 @@ body {
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  @media (max-width: 767px) {
+  @include media-breakpoint(tablet) {
+    padding: 0 20px;
+  }
+  @include media-breakpoint(mobile) {
     padding: 0 16px;
   }
 }
@@ -30,42 +33,42 @@ body {
 h1 {
   font-size: 61px;
   line-height: 120%;
-  @media (max-width: 767px) {
+  @include media-breakpoint(tablet) {
     font-size: 49px;
   }
 }
 h2 {
   font-size: 49px;
   line-height: 120%;
-  @media (max-width: 767px) {
+  @include media-breakpoint(tablet) {
     font-size: 39px;
   }
 }
 h3 {
   font-size: 39px;
   line-height: 120%;
-  @media (max-width: 767px) {
+  @include media-breakpoint(tablet) {
     font-size: 31px;
   }
 }
 h4 {
   font-size: 31px;
   line-height: 120%;
-  @media (max-width: 767px) {
+  @include media-breakpoint(tablet) {
     font-size: 25px;
   }
 }
 h5 {
   font-size: 25px;
   line-height: 120%;
-  @media (max-width: 767px) {
+  @include media-breakpoint(tablet) {
     font-size: 20px;
   }
 }
 h6 {
   font-size: 20px;
   line-height: 120%;
-  @media (max-width: 767px) {
+  @include media-breakpoint(tablet) {
     font-size: 16px;
   }
 }
@@ -113,4 +116,49 @@ h6 {
 button {
   font-family: "Kondolar Thai", "Serif";
   cursor: pointer;
+}
+
+.chart-tooltip {
+  border-radius: 8px !important;
+  padding: 16px !important;
+  color: $color-black !important;
+  width: 328px !important;
+  text-align: left !important;
+  word-break: normal !important;
+  @include media-breakpoint(mobile) {
+    width: 90% !important;
+  }
+  .head {
+    display: flex;
+    justify-content: space-between;
+    .el-tag {
+      background: none;
+      color: $color-black;
+      border-color: $color-green;
+    }
+  }
+  .label {
+    margin-top: 8px;
+    color: $color-green;
+  }
+  .name {
+    color: $color-black;
+  }
+  a {
+    text-decoration: none;
+  }
+  .btn-read-more {
+    background: none;
+    border: 1px solid $color-light-grey;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 44px;
+    margin-top: 16px;
+    width: 100%;
+    .material-icons {
+      margin-right: 10px;
+    }
+  }
 }

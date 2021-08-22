@@ -53,17 +53,11 @@
 <script>
 import _ from "lodash";
 import numeral from "numeral";
+import { mapState } from "vuex";
 
 export default {
-  props: {
-    two_years_data: {
-      type: Array,
-      default: () => {
-        return [];
-      }
-    }
-  },
   computed: {
+    ...mapState(["two_years_data"]),
     other_data() {
       return _.filter(this.two_years_data, d => d.other != "-");
     },
@@ -95,7 +89,7 @@ export default {
   color: white;
   text-align: center;
   padding: 270px 0 100px 0;
-  @media (max-width: 767px) {
+  @include media-breakpoint(tablet) {
     padding: 115px 0 90px 0;
   }
   h2 {
@@ -104,7 +98,7 @@ export default {
   }
   .bar-wrap {
     margin-top: 110px;
-    @media (max-width: 767px) {
+    @include media-breakpoint(tablet) {
       margin-top: 68px;
     }
     .text {
@@ -113,7 +107,7 @@ export default {
       h4 {
         font-weight: normal;
         margin: 0;
-        @media (max-width: 767px) {
+        @include media-breakpoint(tablet) {
           font-size: 16px;
         }
       }
@@ -148,7 +142,7 @@ export default {
     align-items: center;
     justify-content: center;
     margin-top: 56px;
-    @media (max-width: 767px) {
+    @include media-breakpoint(tablet) {
       margin-top: 30px;
     }
     h4 {
@@ -163,7 +157,7 @@ export default {
   .end-text {
     font-weight: normal;
     margin: 192px 0 0 0;
-    @media (max-width: 767px) {
+    @include media-breakpoint(tablet) {
       margin: 95px 0 0 0;
     }
   }

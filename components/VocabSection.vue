@@ -2,18 +2,18 @@
   <div class="vocab-section">
     <div class="intro">
       <h5>
-        คณะรัฐมนตรีพลเอกประยุทธ์ จันทร์โอชา ‘ประยุทธ์-ตู่ไม่รู้ล้ม’
-        ได้รับการแต่งตั้งเป็นคณะรัฐมนตรี วันที่ 10 กรกฏาคม 2562 จนถึงปัจจุบัน
+        คณะรัฐมนตรีพลเอกประยุทธ์ จันทร์โอชา ‘ประยุทธ์-ตู่ไม่รู้ล้ม’<br />
+        ได้รับการแต่งตั้งเป็นคณะรัฐมนตรี วันที่ 10 กรกฏาคม 2562 จนถึงปัจจุบัน<br />
         เป็นระยะเวลาเกือบ 2 ปี
       </h5>
 
       <h5>
-        จึงชวนทุกคนมาดูการตัดสินใจ การบริหารงาน ผ่านมติคณะรัฐมนตรี ตั้งแต่
+        จึงชวนทุกคนมาดูการตัดสินใจ การบริหารงาน ผ่านมติคณะรัฐมนตรี<br />ตั้งแต่
         <span>10 กรกฏาคม 2562 - 5 พฤษภาคม 2564</span>
       </h5>
 
       <h5>
-        คณะรัฐมนตรีนี้ ตัดสินใจกันยังไง ใครเสนอ? มติอะไรบ้าง?
+        คณะรัฐมนตรีนี้ ตัดสินใจกันอย่างไร ใครเสนอ? มติอะไรบ้าง?<br />
         รายละเอียดเกี่ยวกับมตินั้นคืออะไร? เป็นประเภทไหน?
       </h5>
     </div>
@@ -25,7 +25,7 @@
         <li v-for="(vocab, index) in vocabs" :key="index">
           <h3>{{ vocab.title }}</h3>
 
-          <div class="bd1">{{ vocab.text }}</div>
+          <div class="bd1" v-html="vocab.text"></div>
         </li>
       </ul>
     </div>
@@ -48,17 +48,17 @@ export default {
         {
           title: "เห็นชอบ",
           text:
-            "คือ เห็นดีด้วย แต่ยังไม่มีรายละเอียดการดำเนินงานใดๆ หลังจาก “เห็นชอบ” แล้ว หน่วยงานที่เกี่ยวข้องต้องจัดทำรายละเอียดการดำเนินการต่อไป"
+            "คือ เห็นดีด้วย แต่ยังไม่มีรายละเอียดการดำเนินงานใดๆ<br/>หลังจาก “เห็นชอบ” แล้ว หน่วยงานที่เกี่ยวข้องต้องจัดทำรายละเอียดการดำเนินการต่อไป"
         },
         {
           title: "อนุมัติหลักการ",
           text:
-            "คือ ให้อำนาจกระทำตามระเบียบที่กำหนด รายละเอียดจะกว้างๆหลังจาก “อนุมัติหลักการ” หน่วยงานที่เกี่ยวข้องต้องจัดทำเรื่อง ขออนุมัติต่อไป"
+            "คือ ให้อำนาจกระทำตามระเบียบที่กำหนด รายละเอียดจะกว้างๆ<br/>หลังจาก “อนุมัติหลักการ” หน่วยงานที่เกี่ยวข้องต้องจัดทำเรื่อง ขออนุมัติต่อไป"
         },
         {
           title: "อนุมัติดำเนินการ",
           text:
-            "คือ รายละเอียดการดำเนินการครบถ้วน ได้รับอนุมัติหลักการแล้ว หลังจาก “อนุมัติดำเนินการ” หน่วยงานที่เกี่ยวข้องสามารถนำไปปฏิบัติได้เลย"
+            "คือ รายละเอียดการดำเนินการครบถ้วน ได้รับอนุมัติหลักการแล้ว<br/>หลังจาก “อนุมัติดำเนินการ” หน่วยงานที่เกี่ยวข้องสามารถนำไปปฏิบัติได้เลย"
         }
       ]
     };
@@ -71,13 +71,13 @@ export default {
   padding: 240px 0 190px 0;
   text-align: center;
   color: white;
-  @media (max-width: 767px) {
+  @include media-breakpoint(tablet) {
     padding: 140px 0 40px 0;
   }
   .intro {
     width: 844px;
     margin: 0 auto;
-    @media (max-width: 767px) {
+    @include media-breakpoint(tablet) {
       width: 100%;
       padding: 0 16px;
     }
@@ -92,14 +92,14 @@ export default {
   .vocab {
     width: 844px;
     margin: 260px auto 0 auto;
-    @media (max-width: 767px) {
+    @include media-breakpoint(tablet) {
       width: 100%;
       padding: 0 16px;
       margin-top: 170px;
     }
     h5 {
       font-weight: normal;
-      @media (max-width: 767px) {
+      @include media-breakpoint(tablet) {
         text-align: left;
       }
     }
@@ -107,14 +107,14 @@ export default {
       list-style-type: none;
       margin-top: 60px;
       padding: 0;
-      @media (max-width: 767px) {
+      @include media-breakpoint(tablet) {
         margin-top: 24px;
       }
       li {
         display: flex;
         align-items: center;
         margin-bottom: 24px;
-        @media (max-width: 767px) {
+        @include media-breakpoint(tablet) {
           flex-direction: column;
           align-items: flex-start;
         }
@@ -124,13 +124,13 @@ export default {
           margin: 0 30px 0 0;
           font-weight: normal;
           flex: none;
-          @media (max-width: 767px) {
+          @include media-breakpoint(tablet) {
             text-align: left;
           }
         }
         .bd1 {
           text-align: left;
-          @media (max-width: 767px) {
+          @include media-breakpoint(tablet) {
             margin-top: 4px;
           }
         }

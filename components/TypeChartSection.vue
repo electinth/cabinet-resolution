@@ -9,7 +9,7 @@
           :domain_ranges="['0', '500', '1,000']"
           :bar_scale="1.8"
           :bar_height="32"
-          :label_width="$mq === 'mobile' ? 60 : 130"
+          :label_width="['mobile', 'tablet'].includes($mq) ? 60 : 130"
           show_percent_text
         />
 
@@ -30,16 +30,9 @@
 <script>
 import _ from "lodash";
 import numeral from "numeral";
+import { mapState } from "vuex";
 
 export default {
-  props: {
-    two_years_data: {
-      type: Array,
-      default: () => {
-        return [];
-      }
-    }
-  },
   data() {
     return {
       meaning_types: [
@@ -64,6 +57,7 @@ export default {
     };
   },
   computed: {
+    ...mapState(["two_years_data"]),
     type_data() {
       const getTotal = category => {
         const total = _.filter(
@@ -120,7 +114,7 @@ export default {
 .type-chart-section {
   color: white;
   padding: 120px 0;
-  @media (max-width: 767px) {
+  @include media-breakpoint(tablet) {
     padding: 46px 0 66px 0;
   }
   h2 {
@@ -131,7 +125,7 @@ export default {
     display: flex;
     margin-top: 48px;
     align-items: flex-start;
-    @media (max-width: 767px) {
+    @include media-breakpoint(tablet) {
       margin-top: 30px;
       flex-direction: column;
       align-items: unset;
@@ -139,14 +133,14 @@ export default {
     .bar-chart {
       flex: 1;
       margin-right: 90px;
-      @media (max-width: 767px) {
+      @include media-breakpoint(tablet) {
         margin: 0;
       }
     }
     .meaning {
       flex: none;
       width: 290px;
-      @media (max-width: 767px) {
+      @include media-breakpoint(tablet) {
         margin-top: 50px;
         width: 100%;
       }

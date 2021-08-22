@@ -13,7 +13,7 @@
       <div class="card-wrap">
         <h2>มติเกี่ยวกับ โควิด-19<br />ได้รับเสียงตอบรับอย่างไรบ้าง</h2>
 
-        <el-row :gutter="$mq === 'mobile' ? 16 : 32">
+        <el-row :gutter="['mobile', 'tablet'].includes($mq) ? 16 : 32">
           <el-col v-for="(item, index) in list" :key="index" :span="8">
             <a
               :href="item.link"
@@ -38,17 +38,11 @@
 
 <script>
 import _ from "lodash";
+import { mapState } from "vuex";
 
 export default {
-  props: {
-    feedback_data: {
-      type: Array,
-      default: () => {
-        return [];
-      }
-    }
-  },
   computed: {
+    ...mapState(["feedback_data"]),
     list() {
       return _.map(this.feedback_data, d => {
         return { ...d, image: require(`~/assets/images/feedback_${d.no}.jpg`) };
@@ -64,7 +58,7 @@ export default {
   padding: 230px 0 300px 0;
   text-align: center;
   color: $color-dark-green;
-  @media (max-width: 767px) {
+  @include media-breakpoint(tablet) {
     padding: 115px 0 74px 0;
   }
   h2 {
@@ -77,11 +71,11 @@ export default {
   }
   .card-wrap {
     margin-top: 200px;
-    @media (max-width: 767px) {
+    @include media-breakpoint(tablet) {
       margin-top: 150px;
     }
     .el-row {
-      @media (max-width: 767px) {
+      @include media-breakpoint(tablet) {
         overflow-x: auto;
         display: flex;
         margin: 0 -16px 0 -16px !important;
@@ -103,7 +97,7 @@ export default {
       text-align: left;
       color: $color-dark-green;
       display: block;
-      @media (max-width: 767px) {
+      @include media-breakpoint(tablet) {
         margin-top: 30px;
       }
       img {

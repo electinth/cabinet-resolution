@@ -2,15 +2,15 @@
   <div class="covid-chart-section">
     <div class="container">
       <h2>
-        จากที่มีกระแสตอบรับต่างๆ เกิดขึ้น<br />แล้วเราลองมาดูมติเกี่ยวกับ<br />โควิด-19
-        ที่ ครม. ตัดสินใจไปกัน
+        จากที่มีกระแสตอบรับต่างๆ เกิดขึ้น<br />เราลองมาดูมติเกี่ยวกับ<br />โควิด-19
+        ที่ ครม. ตัดสินใจกัน
       </h2>
 
       <div class="chart-wrap">
         <div class="head">
           <h5>มติที่เกี่ยวข้องกับโควิด-19</h5>
 
-          <h3>รวม {{ data.length }} มติ</h3>
+          <h3>รวม {{ covid_data.length }} มติ</h3>
         </div>
 
         <h5 class="title">แบ่งตามหมวดหมู่</h5>
@@ -23,19 +23,66 @@
           <h6 class="name">
             {{ bar.name }}
 
-            <el-tooltip
-              v-if="bar.info"
-              class="item"
-              effect="dark"
-              :content="bar.info"
-              placement="top"
-            >
-              <span class="material-icons">help_outline</span>
-            </el-tooltip>
+            <client-only>
+              <el-tooltip
+                v-if="!['mobile', 'tablet'].includes($mq)"
+                class="item"
+                effect="dark"
+                :content="bar.info"
+                placement="top"
+              >
+                <span class="material-icons">help_outline</span>
+              </el-tooltip>
+            </client-only>
           </h6>
 
           <div class="bar">
-            <div v-for="(data, data_index) in bar.data" :key="data_index"></div>
+            <el-popover
+              v-for="(data, data_index) in bar.data"
+              :key="data_index"
+              :visible-arrow="false"
+              :open-delay="0"
+              :close-delay="200"
+              transition=""
+              width="328"
+              trigger="hover"
+              popper-class="chart-tooltip"
+              @after-leave="afterLeaveTooltip"
+            >
+              <div class="item" slot="reference"></div>
+
+              <div>
+                <div class="head">
+                  <div class="bd2 date">วันเสนอ {{ data.date }}</div>
+
+                  <el-tag v-if="data.category" class="bd2">{{
+                    data.category
+                  }}</el-tag>
+                </div>
+
+                <div class="bd2 label">ชื่อมติ</div>
+
+                <div class="bd1 name">
+                  {{ data.main_topic }}
+                </div>
+
+                <a
+                  :href="`/database/${data.no}`"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <button class="btn-read-more">
+                    <span class="material-icons">
+                      expand_more
+                    </span>
+
+                    <div class="bd1">
+                      อ่านเพิ่ม
+                    </div>
+                  </button>
+                </a>
+              </div>
+            </el-popover>
           </div>
 
           <div class="value">
@@ -61,17 +108,11 @@
 
 <script>
 import _ from "lodash";
+import { mapState } from "vuex";
 
 export default {
-  props: {
-    data: {
-      type: Array,
-      default: () => {
-        return [];
-      }
-    }
-  },
   computed: {
+    ...mapState(["covid_data"]),
     bar_data() {
       const types = [
         {
@@ -110,11 +151,19 @@ export default {
       ];
 
       return _.map(types, t => {
-        const data = _.filter(this.data, d => d.category === t.name);
-        if (this.$mq === "mobile") return { name: t.name, data };
-
+        const data = _.filter(this.covid_data, d => d.category === t.name);
         return { ...t, data };
       });
+    }
+  },
+  methods: {
+    afterLeaveTooltip() {
+      setTimeout(() => {
+        const tooltips = document.getElementsByClassName("el-popover");
+        tooltips.forEach(e => {
+          e.remove();
+        });
+      }, 200);
     }
   }
 };
@@ -125,7 +174,7 @@ export default {
   background: $color-pale-green-2;
   padding: 250px 0 110px 0;
   color: $color-dark-green;
-  @media (max-width: 767px) {
+  @include media-breakpoint(mobile) {
     padding: 66px 0;
   }
   h2 {
@@ -141,7 +190,7 @@ export default {
       align-items: center;
       padding: 24px;
       border-bottom: 1px solid $color-grey;
-      @media (max-width: 767px) {
+      @include media-breakpoint(mobile) {
         display: block;
         padding: 0 0 16px 0;
       }
@@ -170,7 +219,7 @@ export default {
         align-items: center;
         justify-content: flex-end;
         flex: none;
-        @media (max-width: 767px) {
+        @include media-breakpoint(mobile) {
           width: 90px;
           margin: 0 16px 0 0;
         }
@@ -183,13 +232,14 @@ export default {
         display: flex;
         flex-wrap: wrap;
         margin-right: 8px;
-        > div {
+        .item {
           background: $color-red;
           border: 1px solid #ffffff;
           width: 4px;
           height: 16px;
           margin: 0 2px 8px 0;
           box-sizing: content-box;
+          cursor: pointer;
         }
       }
     }
@@ -197,7 +247,7 @@ export default {
   .end-text {
     text-align: center;
     margin-top: 350px;
-    @media (max-width: 767px) {
+    @include media-breakpoint(mobile) {
       margin-top: 96px;
     }
     h3 {

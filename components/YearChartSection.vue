@@ -34,11 +34,7 @@
 
         <div class="bd1 label">เดือนที่ออกมติ</div>
 
-        <el-select
-          v-if="$mq !== 'mobile'"
-          v-model="select_month"
-          placeholder="เดือนที่ออกมติ"
-        >
+        <el-select v-model="select_month" placeholder="เดือนที่ออกมติ">
           <el-option
             v-for="option in select_month_options"
             :key="option.value"
@@ -59,6 +55,20 @@
           >
           </el-option>
         </el-select>
+      </div>
+
+      <div class="legend">
+        <div v-for="(legend, index) in legends" :key="index" class="item bd2">
+          <div
+            :style="{
+              background: legend.color,
+              border: legend.color ? 'none' : '1px solid white'
+            }"
+            class="bar"
+          ></div>
+
+          = {{ legend.name }}
+        </div>
       </div>
 
       <div :class="{ 'year-chart-wrap': true, overflow: !show_all_year }">
@@ -93,42 +103,15 @@
           </button>
         </nuxt-link>
       </div>
-
-      <div class="legend">
-        <div v-for="(legend, index) in legends" :key="index" class="item bd2">
-          <div
-            :style="{
-              background: legend.color,
-              border: legend.color ? 'none' : '1px solid white'
-            }"
-            class="bar"
-          ></div>
-
-          = {{ legend.name }}
-        </div>
-      </div>
     </div>
   </div>
 </template>
 
 <script>
 import _ from "lodash";
+import { mapState } from "vuex";
 
 export default {
-  props: {
-    two_years_data: {
-      type: Array,
-      default: () => {
-        return [];
-      }
-    },
-    covid_data: {
-      type: Array,
-      default: () => {
-        return [];
-      }
-    }
-  },
   data() {
     return {
       select_type: "",
@@ -354,6 +337,9 @@ export default {
       year_data: []
     };
   },
+  computed: {
+    ...mapState(["two_years_data", "covid_data"])
+  },
   watch: {
     select_type() {
       this.setYearData();
@@ -405,7 +391,6 @@ export default {
           );
         }
 
-        data = _.map(data, d => ({ ...d, show_tooltip: false }));
         const group_month = _.groupBy(data, d => _.split(d.date, "/")[0]);
         const months = [];
 
@@ -435,7 +420,7 @@ export default {
   color: white;
   text-align: center;
   padding: 90px 0 140px 0;
-  @media (max-width: 767px) {
+  @include media-breakpoint(tablet) {
     padding: 46px 0 24px 0;
   }
   .head {
@@ -456,20 +441,20 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-    @media (max-width: 767px) {
+    @include media-breakpoint(tablet) {
       flex-direction: column;
       margin-top: 30px;
     }
     .label {
       margin-right: 16px;
       flex: none;
-      @media (max-width: 767px) {
+      @include media-breakpoint(tablet) {
         display: none;
       }
     }
     .el-select {
       margin-right: 16px;
-      @media (max-width: 767px) {
+      @include media-breakpoint(tablet) {
         margin: 16px 0 0 0;
         width: 100%;
       }
@@ -483,12 +468,17 @@ export default {
   }
   .year-chart-wrap {
     margin-top: 50px;
-    position: relative;
-    @media (max-width: 767px) {
+    @include media-breakpoint(tablet) {
       margin-top: 30px;
+    }
+    .year-chart {
+      margin-top: 35px;
     }
   }
   .year-chart-wrap.overflow {
+    position: relative;
+    overflow-y: hidden;
+    height: 500px;
     .bg-overflow {
       background: linear-gradient(
         180deg,
@@ -508,12 +498,12 @@ export default {
     align-items: center;
     justify-content: center;
     margin-top: 30px;
-    @media (max-width: 767px) {
+    @include media-breakpoint(tablet) {
       flex-direction: column;
     }
     a {
       text-decoration: none;
-      @media (max-width: 767px) {
+      @include media-breakpoint(tablet) {
         width: 100%;
         margin-top: 16px;
       }
@@ -526,7 +516,7 @@ export default {
       justify-content: center;
       padding: 8px 12px;
       color: white;
-      @media (max-width: 767px) {
+      @include media-breakpoint(tablet) {
         width: 100%;
       }
       .material-icons {
@@ -539,7 +529,7 @@ export default {
     }
     button:first-child {
       margin-right: 16px;
-      @media (max-width: 767px) {
+      @include media-breakpoint(tablet) {
         margin: 0;
       }
     }
@@ -549,7 +539,7 @@ export default {
     justify-content: center;
     margin-top: 30px;
     flex-wrap: wrap;
-    @media (max-width: 767px) {
+    @include media-breakpoint(tablet) {
       margin-top: 14px;
       justify-content: flex-start;
     }
@@ -558,7 +548,7 @@ export default {
       align-items: center;
       margin-right: 24px;
       line-height: normal;
-      @media (max-width: 767px) {
+      @include media-breakpoint(tablet) {
         width: 50%;
         margin: 16px 0 0 0;
         text-align: left;

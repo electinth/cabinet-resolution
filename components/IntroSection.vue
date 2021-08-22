@@ -2,7 +2,7 @@
   <div class="intro-section">
     <div class="left">
       <h1>
-        เกือบจะ 2 ปีแล้ว คณะรัฐมนตรี ‘พลเอกประยุทธ์ - ตู่ไม่รู้ล้ม’
+        เกือบจะ 2 ปีแล้ว<br />คณะรัฐมนตรี<br />‘พลเอกประยุทธ์ - ตู่ไม่รู้ล้ม’<br />
         ทำอะไรไปบ้าง?
       </h1>
     </div>
@@ -33,7 +33,7 @@ export default {
         },
         {
           id: "#covid-chart-section",
-          name: "มติเกี่ยวกับ<br/>COVID-19",
+          name: "มติเกี่ยวกับ<br/>โควิด-19",
           color: "#99E9DA"
         },
         {
@@ -57,7 +57,7 @@ export default {
   min-height: 100vh;
   display: flex;
   text-align: center;
-  @media (max-width: 767px) {
+  @include media-breakpoint(tablet) {
     flex-direction: column;
   }
   .left {
@@ -66,7 +66,7 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
-    @media (max-width: 767px) {
+    @include media-breakpoint(tablet) {
       width: 100%;
       padding: 60px 16px 40px 16px;
     }
@@ -79,7 +79,7 @@ export default {
     display: flex;
     flex-direction: column;
     padding-right: 16px;
-    @media (max-width: 767px) {
+    @include media-breakpoint(tablet) {
       width: 100%;
       padding: 0 16px 28px 16px;
     }

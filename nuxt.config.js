@@ -1,6 +1,29 @@
+import two_years_data from "./static/data/2years.json";
+import covid_data from "./static/data/covid.json";
+
+const all_data = [...two_years_data, ...covid_data];
+
 export default {
+  env: {
+    web_url: process.env.WEB_URL
+  },
+
   // Target: https://go.nuxtjs.dev/config-target
   target: "static",
+
+  router: {
+    base: "/cabinet-resolution"
+  },
+
+  generate: {
+    dir: "dist/cabinet-resolution",
+    routes: all_data.map(d => {
+      return {
+        route: "/database/" + d.no,
+        payload: d
+      };
+    })
+  },
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -22,6 +45,14 @@ export default {
         href: "https://fonts.googleapis.com/css2?family=Material+Icons"
       }
     ]
+    // script: [
+    //   {
+    //     async: true,
+    //     defer: true,
+    //     src: "https://plausible.anyon.ml/js/plausible.js",
+    //     "data-domain": "elect.in.th/cabinet-resolution"
+    //   }
+    // ]
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
@@ -50,9 +81,9 @@ export default {
     defaultBreakpoint: "desktop",
     breakpoints: {
       mobile: 768,
-      tablet: 1280,
-      desktop: 1400,
-      desktopWide: 2000,
+      tablet: 1025,
+      desktop: 1280,
+      desktopWide: 1440,
       desktopUltraWide: Infinity
     }
   },

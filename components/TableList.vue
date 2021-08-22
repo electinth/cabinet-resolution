@@ -1,6 +1,6 @@
 <template>
   <div class="table-list">
-    <div v-if="$mq === 'mobile'" class="mobile-table">
+    <div v-if="['mobile', 'tablet'].includes($mq)" class="mobile-table">
       <nuxt-link
         :to="`/database/${d.no}`"
         v-for="(d, index) in data"

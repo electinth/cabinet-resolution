@@ -1,14 +1,14 @@
 <template>
   <div class="position-chart-section">
     <div class="container">
-      <h2>จำนวนมติตามแยกตามตำแหน่งหรือกระทรวง</h2>
+      <h2>จำนวนมติแยกตามตำแหน่งหรือกระทรวง</h2>
 
       <BarChart
         :data="position_data"
         :domain_ranges="['0', '250', '500']"
-        :bar_scale="$mq === 'mobile' ? 3.2 : 4"
+        :bar_scale="['mobile', 'tablet'].includes($mq) ? 3.2 : 4"
         :bar_height="16"
-        :label_width="$mq === 'mobile' ? 100 : 230"
+        :label_width="['mobile', 'tablet'].includes($mq) ? 100 : 230"
       />
     </div>
   </div>
@@ -17,17 +17,11 @@
 <script>
 import _ from "lodash";
 import numeral from "numeral";
+import { mapState } from "vuex";
 
 export default {
-  props: {
-    two_years_data: {
-      type: Array,
-      default: () => {
-        return [];
-      }
-    }
-  },
   computed: {
+    ...mapState(["two_years_data"]),
     position_data() {
       const getTotal = position => {
         const total = _.filter(
@@ -141,7 +135,7 @@ export default {
 .position-chart-section {
   color: white;
   padding: 70px 0;
-  @media (max-width: 767px) {
+  @include media-breakpoint(tablet) {
     padding: 46px 0 54px 0;
   }
   h2 {

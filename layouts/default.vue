@@ -1,7 +1,7 @@
 <template>
   <div class="layout">
-    <!-- <elect-navbar title-text=" ">
-      <div v-if="$mq === 'mobile'">
+    <elect-navbar title-text=" ">
+      <div v-if="['mobile', 'tablet'].includes($mq)">
         <button class="btn-hamburger" @click="drawer = true">
           <span class="material-icons">menu</span>
         </button>
@@ -9,9 +9,10 @@
         <el-drawer :visible.sync="drawer" size="100%" direction="rtl">
           <div class="menu-wrap mobile">
             <nuxt-link
-              :to="menu.value"
               v-for="(menu, index) in menu_list"
               :key="index"
+              :to="menu.value"
+              :class="{ active: menu.value === $route.fullPath }"
               @click.native="drawer = false"
             >
               {{ menu.name }}
@@ -22,18 +23,19 @@
 
       <div v-else class="menu-wrap">
         <nuxt-link
-          :to="menu.value"
           v-for="(menu, index) in menu_list"
           :key="index"
+          :to="menu.value"
+          :class="{ active: menu.value === $route.fullPath }"
         >
           {{ menu.name }}
         </nuxt-link>
       </div>
-    </elect-navbar> -->
+    </elect-navbar>
 
     <Nuxt />
 
-    <!-- <elect-footer /> -->
+    <elect-footer />
   </div>
 </template>
 
@@ -51,7 +53,7 @@ export default {
           value: "/database"
         },
         {
-          name: "มติเกี่ยวกับ COVID-19",
+          name: "มติเกี่ยวกับ โควิด-19",
           value: "/#covid-chart-section"
         },
         {
@@ -73,9 +75,12 @@ export default {
     color: black;
     text-decoration: none;
     margin-left: 32px;
-    @media (max-width: 767px) {
+    @include media-breakpoint(tablet) {
       margin: 32px 0 0 0;
     }
+  }
+  a.active {
+    font-weight: bold;
   }
 }
 .menu-wrap.mobile {

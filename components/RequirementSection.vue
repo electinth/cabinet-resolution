@@ -82,7 +82,7 @@ export default {};
 <style lang="scss" scoped>
 .requirement-section {
   padding: 140px 0 200px 0;
-  @media (max-width: 767px) {
+  @include media-breakpoint(tablet) {
     padding: 115px 0 86px 0;
   }
   h2 {
@@ -114,7 +114,7 @@ export default {};
     }
     .row {
       display: flex;
-      @media (max-width: 767px) {
+      @include media-breakpoint(tablet) {
         flex-direction: column;
       }
       .card {
@@ -122,7 +122,7 @@ export default {};
       }
       .card:first-child {
         margin-right: 24px;
-        @media (max-width: 767px) {
+        @include media-breakpoint(tablet) {
           margin: 0;
         }
       }

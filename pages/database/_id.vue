@@ -102,19 +102,23 @@
 
 <script>
 import _ from "lodash";
-import two_years_data from "~/static/data/2years.json";
-import covid_data from "~/static/data/covid.json";
-
-const all_data = [...two_years_data, ...covid_data];
+import { mapState } from "vuex";
 
 export default {
-  asyncData({ params }) {
-    const data = _.find(all_data, d => d.no == params.id);
+  asyncData({ params, payload, store }) {
+    if (payload) {
+      return { data: payload };
+    } else {
+      const { two_years_data, covid_data } = store.state;
+      const all_data = [...two_years_data, ...covid_data];
 
-    return { data: data || {} };
+      return { data: _.find(all_data, d => d.no == params.id) };
+    }
   },
   computed: {
+    ...mapState(["two_years_data", "covid_data"]),
     other_data() {
+      const all_data = [...this.two_years_data, ...this.covid_data];
       let data = _.filter(all_data, d => d.category === this.data.category);
       data = _.shuffle(data);
       data.length = 5;
@@ -129,7 +133,7 @@ export default {
 .database-detail-page {
   background: $color-light-grey-2;
   padding: 70px 0;
-  @media (max-width: 767px) {
+  @include media-breakpoint(tablet) {
     padding: 32px 0;
     background: white;
   }
@@ -149,7 +153,7 @@ export default {
     background: white;
     padding: 24px;
     margin-top: 16px;
-    @media (max-width: 767px) {
+    @include media-breakpoint(tablet) {
       background: none;
       border: none;
       padding: 0;
@@ -160,7 +164,7 @@ export default {
       width: 314px;
       background: $color-pale-green-2;
       flex: none;
-      @media (max-width: 767px) {
+      @include media-breakpoint(tablet) {
         width: 100%;
         margin-top: 40px;
       }
@@ -205,7 +209,7 @@ export default {
     }
     .right {
       padding: 0 24px;
-      @media (max-width: 767px) {
+      @include media-breakpoint(tablet) {
         margin-top: 24px;
         padding: 0;
       }
@@ -225,7 +229,7 @@ export default {
   }
   .table-wrap {
     margin-top: 48px;
-    @media (max-width: 767px) {
+    @include media-breakpoint(tablet) {
       margin-top: 40px;
     }
     h4 {
@@ -233,7 +237,7 @@ export default {
     }
     .table-list {
       margin-top: 32px;
-      @media (max-width: 767px) {
+      @include media-breakpoint(tablet) {
         margin-top: 0;
       }
     }

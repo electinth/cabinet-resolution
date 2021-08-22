@@ -66,16 +66,9 @@
 
 <script>
 import _ from "lodash";
+import { mapState } from "vuex";
 
 export default {
-  props: {
-    two_years_data: {
-      type: Array,
-      default: () => {
-        return [];
-      }
-    }
-  },
   data() {
     return {
       tabs: [
@@ -95,6 +88,9 @@ export default {
       tab: "เศรษฐกิจ-สังคม",
       card: null
     };
+  },
+  computed: {
+    ...mapState(["two_years_data"])
   },
   watch: {
     tab() {
@@ -117,7 +113,7 @@ export default {
 .example-section {
   color: white;
   padding: 120px 0;
-  @media (max-width: 767px) {
+  @include media-breakpoint(tablet) {
     padding: 46px 0 42px 0;
   }
   h2 {
@@ -125,7 +121,7 @@ export default {
     margin: 0 0 16px 0;
   }
   .radio-wrap {
-    @media (max-width: 767px) {
+    @include media-breakpoint(tablet) {
       overflow-x: auto;
       margin-right: -16px;
     }
@@ -142,7 +138,7 @@ export default {
           border-radius: 0;
           font-size: 25px;
           line-height: 120%;
-          @media (max-width: 767px) {
+          @include media-breakpoint(tablet) {
             font-size: 16px;
           }
         }
@@ -163,7 +159,7 @@ export default {
     width: 670px;
     text-align: left;
     margin: 74px auto 0 auto;
-    @media (max-width: 767px) {
+    @include media-breakpoint(tablet) {
       width: 100%;
       margin-top: 30px;
     }
