@@ -1,17 +1,14 @@
 * {
   box-sizing: border-box;
 }
-
 html {
   scroll-behavior: smooth;
 }
-
 body {
   background: $color-dark-green;
   font-family: "Kondolar Thai", "Serif";
   margin: 0;
 }
-
 .container {
   max-width: 1200px;
   margin: 0 auto;
@@ -22,14 +19,12 @@ body {
     padding: 0 16px;
   }
 }
-
 .font-kondolar {
   font-family: "Kondolar Thai", "Serif";
 }
 .font-anuphan {
   font-family: "Anuphan", "Serif";
 }
-
 h1 {
   font-size: 61px;
   line-height: 120%;
@@ -84,7 +79,6 @@ h6 {
   font-size: 10px;
   line-height: 120%;
 }
-
 .el-input {
   input {
     border: 1px solid black;
@@ -104,20 +98,16 @@ h6 {
     color: $color-grey;
   }
 }
-
 .el-select-dropdown__item.selected {
   color: $color-green !important;
 }
-
 .el-dialog__close {
   color: black;
 }
-
 button {
   font-family: "Kondolar Thai", "Serif";
   cursor: pointer;
 }
-
 .chart-tooltip {
   border-radius: 8px !important;
   padding: 16px !important;
@@ -160,5 +150,13 @@ button {
     .material-icons {
       margin-right: 10px;
     }
+  }
+}
+.el-message--success {
+  background: white !important;
+  border: none !important;
+  .el-icon-success,
+  .el-message__content {
+    color: $color-dark-green !important;
   }
 }

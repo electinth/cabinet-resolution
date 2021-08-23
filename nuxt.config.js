@@ -129,7 +129,23 @@ export default {
   buildModules: ["@nuxtjs/style-resources"],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: [["nuxt-mq"]],
+  modules: [["nuxt-mq"], "@nuxtjs/firebase", "cookie-universal-nuxt"],
+
+  firebase: {
+    config: {
+      apiKey: process.env.API_KEY,
+      authDomain: "cabinet-resolution.firebaseapp.com",
+      databaseURL:
+        "https://cabinet-resolution-default-rtdb.asia-southeast1.firebasedatabase.app",
+      projectId: "cabinet-resolution",
+      storageBucket: "cabinet-resolution.appspot.com",
+      messagingSenderId: "1066908716586",
+      appId: "1:1066908716586:web:45e8ee9f858e2df1c73d53"
+    },
+    services: {
+      database: true
+    }
+  },
 
   mq: {
     defaultBreakpoint: "desktop",

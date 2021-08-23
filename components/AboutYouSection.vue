@@ -20,10 +20,44 @@
         ตรวจสอบ-ประเมินผล การตัดสินใจเหล่านี้ไหม?
       </h2>
 
-      <div class="btn-wrap">
-        <button class="btn-yes">มี</button>
+      <div v-if="vote_have !== 0 || vote_dont_have !== 0" class="bar-wrap">
+        <div class="text">
+          <div class="left">
+            <h4>มี</h4>
+          </div>
 
-        <button class="btn-no">ไม่มี</button>
+          <div class="right">
+            <h4>ไม่มี</h4>
+          </div>
+        </div>
+
+        <div class="value">
+          <div class="left" :style="{ width: `${vote_have_percent}%` }">
+            <div class="bar">
+              <div class="bd1">
+                {{ numFormat(vote_have) }} คน ({{ vote_have_percent }}%)
+              </div>
+            </div>
+          </div>
+
+          <div class="right" :style="{ width: `${vote_dont_have_percent}%` }">
+            <div class="bar">
+              <div class="bd1">
+                {{ numFormat(vote_dont_have) }} คน ({{
+                  vote_dont_have_percent
+                }}%)
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div v-if="!voted" class="btn-wrap">
+        <button class="btn-yes" @click="updateVotePoint('have')">มี</button>
+
+        <button class="btn-no" @click="updateVotePoint('dont_have')">
+          ไม่มี
+        </button>
       </div>
 
       <div class="btn-wrap">
@@ -42,11 +76,68 @@
 </template>
 
 <script>
+import firebase from "firebase";
+import numeral from "numeral";
+
 export default {
   data() {
     return {
-      url: process.env.web_url
+      url: process.env.web_url,
+      vote_have: 0,
+      vote_dont_have: 0,
+      is_vote: false
     };
+  },
+  created() {
+    this.getVotePoint();
+  },
+  computed: {
+    voted() {
+      return this.$cookies.get("voted") || this.is_vote;
+    },
+    total_vote() {
+      return this.vote_have + this.vote_dont_have;
+    },
+    vote_have_percent() {
+      const percent = (this.vote_have / this.total_vote) * 100;
+      return percent.toFixed(1);
+    },
+    vote_dont_have_percent() {
+      const percent = (this.vote_dont_have / this.total_vote) * 100;
+      return percent.toFixed(1);
+    }
+  },
+  methods: {
+    numFormat(value = 0) {
+      return numeral(value).format("0,0");
+    },
+    async updateVotePoint(id) {
+      const ref = this.$fire.database.ref("vote");
+
+      try {
+        await ref.child(id).set(firebase.database.ServerValue.increment(1));
+        this.$cookies.set("voted", true);
+        this.is_vote = true;
+        this.getVotePoint();
+        this.$message({
+          message: "โหวตคำตอบเรียบร้อยแล้ว",
+          type: "success"
+        });
+      } catch (e) {
+        alert(e);
+      }
+    },
+    async getVotePoint() {
+      const ref = this.$fire.database.ref("vote");
+
+      try {
+        const snapshot = await ref.once("value");
+        this.vote_have = _.get(snapshot.val(), "have");
+        this.vote_dont_have = _.get(snapshot.val(), "dont_have");
+      } catch (e) {
+        alert(e);
+      }
+    }
   }
 };
 </script>
@@ -103,6 +194,44 @@ export default {
       margin-top: 300px;
       @include media-breakpoint(tablet) {
         font-size: 20px;
+      }
+    }
+  }
+  .bar-wrap {
+    margin-top: 50px;
+    .text {
+      display: flex;
+      justify-content: space-between;
+      h4 {
+        font-weight: normal;
+        margin: 0;
+        @include media-breakpoint(tablet) {
+          font-size: 16px;
+        }
+      }
+    }
+    .value {
+      display: flex;
+      .bar {
+        height: 48px;
+        padding: 8px;
+        display: flex;
+        align-items: center;
+        font-weight: bold;
+        margin-top: 16px;
+      }
+    }
+    .left {
+      text-align: left;
+      .bar {
+        background: $color-green;
+      }
+    }
+    .right {
+      text-align: right;
+      .bar {
+        background: $color-pale-red;
+        justify-content: flex-end;
       }
     }
   }
