@@ -53,7 +53,7 @@
             </div>
 
             <a
-              :href="`/database/detail?id=${data.no}`"
+              :href="`/cabinet-resolution/database/detail?id=${data.no}`"
               target="_blank"
               rel="noopener noreferrer"
             >
