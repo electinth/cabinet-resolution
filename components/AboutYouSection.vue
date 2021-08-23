@@ -27,13 +27,11 @@
       </div>
 
       <div class="btn-wrap">
-        <button class="btn-go-to-top" @click="goToTop">
-          <span class="material-icons">
-            refresh
-          </span>
-
-          ดูฐานข้อมูล มติ ครม. อีกครั้ง
-        </button>
+        <nuxt-link to="/database">
+          <button class="btn-go-to-top">
+            ดูฐานข้อมูล มติ ครม. อีกครั้ง
+          </button>
+        </nuxt-link>
       </div>
 
       <div class="sharer">
@@ -49,11 +47,6 @@ export default {
     return {
       url: process.env.web_url
     };
-  },
-  methods: {
-    goToTop() {
-      window.scrollTo(0, 0);
-    }
   }
 };
 </script>
@@ -108,15 +101,8 @@ export default {
       background: $color-green;
       font-size: 25px;
       margin-top: 300px;
-      display: flex;
-      align-items: center;
-      text-align: left;
       @include media-breakpoint(tablet) {
         font-size: 20px;
-      }
-      .material-icons {
-        margin-right: 16px;
-        font-size: 30px;
       }
     }
   }

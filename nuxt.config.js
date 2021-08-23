@@ -2,6 +2,10 @@ import two_years_data from "./static/data/2years.json";
 import covid_data from "./static/data/covid.json";
 
 const all_data = [...two_years_data, ...covid_data];
+const web_config = {
+  title: "เกือบจะ 2 ปีแล้ว ทำอะไรไปบ้าง?",
+  og_image: "./static/og_image.jpg"
+};
 
 export default {
   env: {
@@ -27,18 +31,76 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: "58-cabinet-resolution",
+    title: web_config.title,
     htmlAttrs: {
       lang: "en"
     },
     meta: [
       { charset: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { hid: "description", name: "description", content: "" },
+      {
+        hid: "description",
+        name: "description",
+        content: web_config.description
+      },
+      {
+        hid: "og:title",
+        property: "og:title",
+        content: web_config.title
+      },
+      {
+        hid: "og:description",
+        property: "og:description",
+        content: web_config.description
+      },
+      {
+        hid: "og:type",
+        property: "og:type",
+        content: "website"
+      },
+      {
+        hid: "og:image",
+        property: "og:image",
+        content: web_config.og_image
+      },
+      {
+        hid: "og:url",
+        property: "og:url",
+        content: process.env.WEB_URL
+      },
+      {
+        hid: "twitter:title",
+        name: "twitter:title",
+        content: web_config.title
+      },
+      {
+        hid: "twitter:description",
+        name: "twitter:description",
+        content: web_config.description
+      },
+      {
+        hid: "twitter:card",
+        name: "twitter:card",
+        content: "summary_large_image"
+      },
+      {
+        hid: "twitter:image",
+        name: "twitter:image",
+        content: web_config.og_image
+      },
+      {
+        hid: "twitter:url",
+        property: "twitter:url",
+        content: process.env.WEB_URL
+      },
       { name: "format-detection", content: "telephone=no" }
     ],
     link: [
-      { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
+      {
+        rel: "icon",
+        type: "image/x-icon",
+        href: "/cabinet-resolution/favicon.png"
+      },
       { rel: "stylesheet", href: "https://elect.in.th/assets/typography.css" },
       {
         rel: "stylesheet",
