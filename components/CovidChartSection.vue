@@ -23,17 +23,15 @@
           <h6 class="name">
             {{ bar.name }}
 
-            <client-only>
-              <el-tooltip
-                v-if="!['mobile', 'tablet'].includes($mq)"
-                class="item"
-                effect="dark"
-                :content="bar.info"
-                placement="top"
-              >
-                <span class="material-icons">help_outline</span>
-              </el-tooltip>
-            </client-only>
+            <el-tooltip
+              v-if="!['mobile', 'tablet'].includes($mq)"
+              class="item"
+              effect="dark"
+              :content="bar.info"
+              placement="top"
+            >
+              <span class="material-icons">help_outline</span>
+            </el-tooltip>
           </h6>
 
           <div class="bar">
@@ -67,7 +65,7 @@
                 </div>
 
                 <a
-                  :href="`/database/${data.no}`"
+                  :href="`/database/detail?id=${data.no}`"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -240,6 +238,9 @@ export default {
           margin: 0 2px 8px 0;
           box-sizing: content-box;
           cursor: pointer;
+        }
+        .item:hover {
+          background: white !important;
         }
       }
     }

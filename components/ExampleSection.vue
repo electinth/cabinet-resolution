@@ -44,7 +44,7 @@
           </div>
         </div>
 
-        <nuxt-link :to="`/database/${card.no}`">
+        <nuxt-link :to="`/database/detail?id=${card.no}`">
           <button class="btn-read-more">
             <span class="material-icons">
               expand_more

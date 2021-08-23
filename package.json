@@ -6,7 +6,7 @@
     "dev": "nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
-    "generate": "node --max-old-space-size=5000 node_modules/nuxt/bin/nuxt.js generate"
+    "generate": "nuxt generate"
   },
   "dependencies": {
     "@electinth/common": "^2.0.0",

@@ -105,18 +105,14 @@ import _ from "lodash";
 import { mapState } from "vuex";
 
 export default {
-  asyncData({ params, payload, store }) {
-    if (payload) {
-      return { data: payload };
-    } else {
-      const { two_years_data, covid_data } = store.state;
-      const all_data = [...two_years_data, ...covid_data];
-
-      return { data: _.find(all_data, d => d.no == params.id) };
-    }
-  },
   computed: {
     ...mapState(["two_years_data", "covid_data"]),
+    data() {
+      const all_data = [...this.two_years_data, ...this.covid_data];
+      const data = _.find(all_data, d => d.no == this.$route.query.id);
+
+      return data || {};
+    },
     other_data() {
       const all_data = [...this.two_years_data, ...this.covid_data];
       let data = _.filter(all_data, d => d.category === this.data.category);
@@ -124,6 +120,11 @@ export default {
       data.length = 5;
 
       return data;
+    }
+  },
+  watch: {
+    "$route.query"() {
+      window.scrollTo(0, 0);
     }
   }
 };

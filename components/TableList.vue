@@ -2,7 +2,7 @@
   <div class="table-list">
     <div v-if="['mobile', 'tablet'].includes($mq)" class="mobile-table">
       <nuxt-link
-        :to="`/database/${d.no}`"
+        :to="`/database/detail?id=${d.no}`"
         v-for="(d, index) in data"
         :key="index"
         class="item"
@@ -99,7 +99,7 @@ export default {
   methods: {
     cellClick(row, column, cell, event) {
       if (column.label === "ชื่อมติ") {
-        this.$router.push(`/database/${row.no}`);
+        this.$router.push(`/database/detail?id=${row.no}`);
       }
     }
   }

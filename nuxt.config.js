@@ -1,7 +1,3 @@
-import two_years_data from "./static/data/2years.json";
-import covid_data from "./static/data/covid.json";
-
-const all_data = [...two_years_data, ...covid_data];
 const web_config = {
   title: "เกือบจะ 2 ปีแล้ว ทำอะไรไปบ้าง?",
   og_image: "./static/og_image.jpg"
@@ -13,20 +9,16 @@ export default {
   },
 
   // Target: https://go.nuxtjs.dev/config-target
-  target: "static",
+  // target: "static",
+
+  ssr: false,
 
   router: {
     base: "/cabinet-resolution"
   },
 
   generate: {
-    dir: "dist/cabinet-resolution",
-    routes: all_data.map(d => {
-      return {
-        route: "/database/" + d.no,
-        payload: d
-      };
-    })
+    dir: "dist/cabinet-resolution"
   },
 
   // Global page headers: https://go.nuxtjs.dev/config-head
