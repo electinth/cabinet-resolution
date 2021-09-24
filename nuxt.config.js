@@ -1,6 +1,6 @@
 const web_config = {
   title: "เกือบจะ 2 ปีแล้ว ทำอะไรไปบ้าง?",
-  og_image: "./static/og_image.jpg"
+  og_image: `${process.env.WEB_URL}/og_image.jpg`
 };
 
 export default {
@@ -30,21 +30,21 @@ export default {
     meta: [
       { charset: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      {
-        hid: "description",
-        name: "description",
-        content: web_config.description
-      },
+      // {
+      //   hid: "description",
+      //   name: "description",
+      //   content: web_config.description
+      // },
       {
         hid: "og:title",
         property: "og:title",
         content: web_config.title
       },
-      {
-        hid: "og:description",
-        property: "og:description",
-        content: web_config.description
-      },
+      // {
+      //   hid: "og:description",
+      //   property: "og:description",
+      //   content: web_config.description
+      // },
       {
         hid: "og:type",
         property: "og:type",
@@ -65,11 +65,11 @@ export default {
         name: "twitter:title",
         content: web_config.title
       },
-      {
-        hid: "twitter:description",
-        name: "twitter:description",
-        content: web_config.description
-      },
+      // {
+      //   hid: "twitter:description",
+      //   name: "twitter:description",
+      //   content: web_config.description
+      // },
       {
         hid: "twitter:card",
         name: "twitter:card",
@@ -98,15 +98,15 @@ export default {
         rel: "stylesheet",
         href: "https://fonts.googleapis.com/css2?family=Material+Icons"
       }
+    ],
+    script: [
+      {
+        async: true,
+        defer: true,
+        src: "https://plausible.anyon.ml/js/plausible.js",
+        "data-domain": "elect.in.th/cabinet-resolution"
+      }
     ]
-    // script: [
-    //   {
-    //     async: true,
-    //     defer: true,
-    //     src: "https://plausible.anyon.ml/js/plausible.js",
-    //     "data-domain": "elect.in.th/cabinet-resolution"
-    //   }
-    // ]
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css

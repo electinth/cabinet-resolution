@@ -22,7 +22,7 @@
 
     <AboutYouSection />
 
-    <!-- <ReadMoreSection id="read-more-section" /> -->
+    <ReadMoreSection id="read-more-section" />
   </div>
 </template>
 

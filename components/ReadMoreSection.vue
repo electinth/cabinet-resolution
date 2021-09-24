@@ -14,7 +14,7 @@
         </el-collapse-item>
       </el-collapse>
 
-      <h4>ติดตามเกี่ยวกับเรื่อง โควิด-19 เพิ่มเติม</h4>
+      <!-- <h4>ติดตามเกี่ยวกับเรื่อง โควิด-19 เพิ่มเติม</h4>
 
       <div class="row">
         <a
@@ -43,7 +43,7 @@
             รายงานการฉีดวัคซีนในประเทศไทย The researcher
           </div>
         </a>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
@@ -90,10 +90,10 @@ export default {
 <style lang="scss" scoped>
 .read-more-section {
   background: $color-dark-green;
-  padding: 100px 0 130px 0;
+  padding: 100px 0;
   color: white;
   @include media-breakpoint(tablet) {
-    padding: 50px 0 116px 0;
+    padding: 50px 0;
   }
   h2 {
     font-weight: normal;
