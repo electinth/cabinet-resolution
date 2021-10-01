@@ -1,11 +1,11 @@
 const web_config = {
   title: "เกือบจะ 2 ปีแล้ว ทำอะไรไปบ้าง?",
-  og_image: `${process.env.WEB_URL}/og_image.jpg`
+  og_image: `${process.env.WEB_URL}/og_image.jpg`,
 };
 
 export default {
   env: {
-    web_url: process.env.WEB_URL
+    web_url: process.env.WEB_URL,
   },
 
   // Target: https://go.nuxtjs.dev/config-target
@@ -14,18 +14,18 @@ export default {
   ssr: false,
 
   router: {
-    base: "/cabinet-resolution"
+    base: "/cabinet-resolution",
   },
 
   generate: {
-    dir: "dist/cabinet-resolution"
+    dir: "dist/cabinet-resolution",
   },
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: web_config.title,
     htmlAttrs: {
-      lang: "en"
+      lang: "en",
     },
     meta: [
       { charset: "utf-8" },
@@ -38,7 +38,7 @@ export default {
       {
         hid: "og:title",
         property: "og:title",
-        content: web_config.title
+        content: web_config.title,
       },
       // {
       //   hid: "og:description",
@@ -48,22 +48,22 @@ export default {
       {
         hid: "og:type",
         property: "og:type",
-        content: "website"
+        content: "website",
       },
       {
         hid: "og:image",
         property: "og:image",
-        content: web_config.og_image
+        content: web_config.og_image,
       },
       {
         hid: "og:url",
         property: "og:url",
-        content: process.env.WEB_URL
+        content: process.env.WEB_URL,
       },
       {
         hid: "twitter:title",
         name: "twitter:title",
-        content: web_config.title
+        content: web_config.title,
       },
       // {
       //   hid: "twitter:description",
@@ -73,53 +73,53 @@ export default {
       {
         hid: "twitter:card",
         name: "twitter:card",
-        content: "summary_large_image"
+        content: "summary_large_image",
       },
       {
         hid: "twitter:image",
         name: "twitter:image",
-        content: web_config.og_image
+        content: web_config.og_image,
       },
       {
         hid: "twitter:url",
         property: "twitter:url",
-        content: process.env.WEB_URL
+        content: process.env.WEB_URL,
       },
-      { name: "format-detection", content: "telephone=no" }
+      { name: "format-detection", content: "telephone=no" },
     ],
     link: [
       {
         rel: "icon",
         type: "image/x-icon",
-        href: "/cabinet-resolution/favicon.png"
+        href: "/cabinet-resolution/favicon.png",
       },
-      { rel: "stylesheet", href: "https://elect.in.th/assets/typography.css" },
+      { rel: "stylesheet", href: "https://assets.elect.in.th/typography.css" },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Material+Icons"
-      }
+        href: "https://fonts.googleapis.com/css2?family=Material+Icons",
+      },
     ],
     script: [
       {
         async: true,
         defer: true,
-        src: "https://plausible.anyon.ml/js/plausible.js",
-        "data-domain": "elect.in.th/cabinet-resolution"
-      }
-    ]
+        src: "https://analytics.punchup.world/js/plausible.js",
+        "data-domain": "elect.in.th/cabinet-resolution",
+      },
+    ],
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: ["~/assets/style/index.scss", "element-ui/lib/theme-chalk/index.css"],
 
   styleResources: {
-    scss: ["~/assets/style/variables.scss"]
+    scss: ["~/assets/style/variables.scss"],
   },
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     { src: "~/plugins/element-ui" },
-    { src: "~/plugins/elect", mode: "client" }
+    { src: "~/plugins/elect", mode: "client" },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -140,11 +140,11 @@ export default {
       projectId: "cabinet-resolution",
       storageBucket: "cabinet-resolution.appspot.com",
       messagingSenderId: "1066908716586",
-      appId: "1:1066908716586:web:45e8ee9f858e2df1c73d53"
+      appId: "1:1066908716586:web:45e8ee9f858e2df1c73d53",
     },
     services: {
-      database: true
-    }
+      database: true,
+    },
   },
 
   mq: {
@@ -154,12 +154,12 @@ export default {
       tablet: 1025,
       desktop: 1280,
       desktopWide: 1440,
-      desktopUltraWide: Infinity
-    }
+      desktopUltraWide: Infinity,
+    },
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-    transpile: [/^element-ui/]
-  }
+    transpile: [/^element-ui/],
+  },
 };
